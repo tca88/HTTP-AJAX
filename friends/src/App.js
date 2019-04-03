@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import { Route } from "react-router-dom";
+import { Route, Link, NavLink } from "react-router-dom";
 import axios from "axios";
+import FriendsList from "./components/FriendsList";
+import FriendPage from "./components/FriendPage";
 import "./App.css";
 
 class App extends Component {
@@ -26,7 +28,31 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div>Hello</div>
+        <nav className="main-nav">
+          <NavLink
+            exact
+            to="/"
+            className="nav-item"
+            activeClassName="nav-item-active"
+          >
+            Home
+          </NavLink>
+        </nav>
+        <div className="container">
+          <Route
+            exact
+            path="/"
+            render={props => (
+              <FriendsList {...props} friends={this.state.friends} />
+            )}
+          />
+          <Route
+            path="/friend/:id"
+            render={props => (
+              <FriendPage {...props} friends={this.state.friends} />
+            )}
+          />
+        </div>
       </div>
     );
   }
