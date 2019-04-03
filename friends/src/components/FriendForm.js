@@ -31,7 +31,7 @@ class FriendForm extends Component {
   render() {
     return (
       <div>
-        <h2>POST (add) a new quote</h2>
+        <h2>Add a New Friend</h2>
         <form onSubmit={this.updateFriends}>
           <input
             name="name"
