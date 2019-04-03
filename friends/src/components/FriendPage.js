@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Route, Link, NavLink } from "react-router-dom";
 
-function FriendCard(props) {
+function FriendPage(props) {
   const friend = props.friends.find(
     friend => `${friend.id}` === props.match.params.id
   );
@@ -17,4 +17,4 @@ function FriendCard(props) {
   );
 }
 
-export default FriendCard;
+export default FriendPage;

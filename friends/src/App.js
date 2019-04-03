@@ -3,6 +3,7 @@ import { Route, Link, NavLink } from "react-router-dom";
 import axios from "axios";
 import FriendsList from "./components/FriendsList";
 import FriendPage from "./components/FriendPage";
+import FriendForm from "./components/FriendForm";
 import "./App.css";
 
 class App extends Component {
@@ -25,6 +26,22 @@ class App extends Component {
       });
   }
 
+  updateFriends = newFriend => {
+    axios
+      .post("http://localhost:5000/friends", newFriend)
+      .then(res => {
+        console.log("printing res");
+        console.log(res);
+        this.setState({
+          friends: [...this.state.friends, newFriend]
+        });
+      })
+      .then((window.location.href = "/"))
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   render() {
     return (
       <div className="App">
@@ -36,6 +53,13 @@ class App extends Component {
             activeClassName="nav-item-active"
           >
             Home
+          </NavLink>
+          <NavLink
+            to="/add-friend"
+            className="nav-item"
+            activeClassName="nav-item-active"
+          >
+            Add a Friend
           </NavLink>
         </nav>
         <div className="container">
@@ -50,6 +74,16 @@ class App extends Component {
             path="/friend/:id"
             render={props => (
               <FriendPage {...props} friends={this.state.friends} />
+            )}
+          />
+          <Route
+            path="/add-friend"
+            render={props => (
+              <FriendForm
+                {...props}
+                friends={this.state.friends}
+                updateFriends={this.updateFriends}
+              />
             )}
           />
         </div>

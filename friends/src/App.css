@@ -11,11 +11,14 @@
   padding: 1rem;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
+  display: flex;
+  flex-direction: row;
 }
 
 .nav-item {
   text-decoration: none;
   color: white;
+  margin-right: 1rem;
 }
 
 .nav-item-active {
