@@ -19,7 +19,7 @@ function FriendPage(props) {
         <p>{friend.name}</p>
         <p>{friend.age}</p>
         <p>{friend.email}</p>
-        <button onClick={updateFriends}>Update Friend</button>
+        <button onClick={updateFriends}>Update Details</button>
       </div>
     </div>
   );
