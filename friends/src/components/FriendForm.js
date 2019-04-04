@@ -14,7 +14,11 @@ class FriendForm extends Component {
   }
 
   handleChange = e => {
+    e.persist();
     console.log(this.state.friend);
+    if (e.target.name === "age") {
+      e.target.value = parseInt(e.target.value, 10);
+    }
     this.setState({
       friend: {
         ...this.state.friend,
@@ -26,6 +30,14 @@ class FriendForm extends Component {
   updateFriends = e => {
     e.preventDefault();
     this.props.updateFriends(this.state.friend);
+
+    this.setState({
+      friend: {
+        name: "",
+        age: "",
+        email: ""
+      }
+    });
   };
 
   render() {
@@ -40,6 +52,7 @@ class FriendForm extends Component {
             value={this.state.name}
           />
           <input
+            type="number"
             name="age"
             placeholder="age"
             onChange={this.handleChange}
