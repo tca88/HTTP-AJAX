@@ -1,0 +1,31 @@
+.App {
+  margin: 0 auto;
+  max-width: 1000px;
+  border: 1px solid black;
+  border-radius: 3px;
+}
+
+.main-nav {
+  margin-bottom: 1rem;
+  background: black;
+  padding: 1rem;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  display: flex;
+  flex-direction: row;
+}
+
+.nav-item {
+  text-decoration: none;
+  color: white;
+  margin-right: 1rem;
+}
+
+.nav-item-active {
+  color: gold;
+  font-weight: bold;
+}
+
+.container {
+  text-align: center;
+}
