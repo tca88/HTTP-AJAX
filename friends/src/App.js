@@ -30,13 +30,13 @@ class App extends Component {
     axios
       .post("http://localhost:5000/friends", newFriend)
       .then(res => {
-        console.log("printing res");
-        console.log(res);
+        // console.log("printing res");
+        // console.log(res);
         this.setState({
           friends: [...this.state.friends, newFriend]
         });
+        this.props.history.push("/");
       })
-      .then((window.location.href = "/"))
       .catch(err => {
         console.log(err);
       });
