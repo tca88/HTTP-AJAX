@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-class FriendForm extends Component {
+class AddFriendForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,9 +27,9 @@ class FriendForm extends Component {
     });
   };
 
-  updateFriends = e => {
+  addFriends = e => {
     e.preventDefault();
-    this.props.updateFriends(this.state.friend);
+    this.props.addFriends(this.state.friend);
 
     this.setState({
       friend: {
@@ -71,4 +71,4 @@ class FriendForm extends Component {
   }
 }
 
-export default FriendForm;
+export default AddFriendForm;
