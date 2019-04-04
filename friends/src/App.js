@@ -62,6 +62,22 @@ class App extends Component {
       });
   };
 
+  // DELETE Request to delete a friend.
+
+  deleteFriend = id => {
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(res => {
+        this.setState({ friends: res.data });
+        console.log(res);
+        // redirect
+        this.props.history.push("/");
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   setActiveFriend = friend => {
     this.setState({ activeFriend: friend });
   };
@@ -98,6 +114,7 @@ class App extends Component {
             path="/friend/:id"
             render={props => (
               <FriendPage
+                deleteFriend={this.deleteFriend}
                 friends={this.state.friends}
                 setActiveFriend={this.setActiveFriend}
                 {...props}

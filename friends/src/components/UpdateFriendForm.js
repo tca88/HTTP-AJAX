@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import "./Components.css";
 
 class UpdateFriendForm extends Component {
   state = {
@@ -26,9 +27,9 @@ class UpdateFriendForm extends Component {
 
   render() {
     return (
-      <div>
+      <div className="form-container">
         <h2>Update Your Friend's Info</h2>
-        <form onSubmit={this.updateFriends}>
+        <form className="form" onSubmit={this.updateFriends}>
           <input
             name="name"
             placeholder="name"

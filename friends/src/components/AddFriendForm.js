@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import "./Components.css";
 
 class AddFriendForm extends Component {
   constructor(props) {
@@ -42,9 +43,9 @@ class AddFriendForm extends Component {
 
   render() {
     return (
-      <div>
+      <div className="form-container">
         <h2>Add a New Friend</h2>
-        <form onSubmit={this.addFriends}>
+        <form onSubmit={this.addFriends} className="form">
           <input
             name="name"
             placeholder="name"
