@@ -1,21 +1,13 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-class AddFriendForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      friend: {
-        name: "",
-        age: "",
-        email: ""
-      }
-    };
-  }
+class UpdateFriendForm extends Component {
+  state = {
+    friend: this.props.activeFriend
+  };
 
   handleChange = e => {
     e.persist();
-    console.log(this.state.friend);
     if (e.target.name === "age") {
       e.target.value = parseInt(e.target.value, 10);
     }
@@ -27,24 +19,16 @@ class AddFriendForm extends Component {
     });
   };
 
-  addFriends = e => {
+  updateFriends = e => {
     e.preventDefault();
-    this.props.addFriends(this.state.friend);
-
-    this.setState({
-      friend: {
-        name: "",
-        age: "",
-        email: ""
-      }
-    });
+    this.props.updateFriends(this.state.friend);
   };
 
   render() {
     return (
       <div>
-        <h2>Add a New Friend</h2>
-        <form onSubmit={this.addFriends}>
+        <h2>Update Your Friend's Info</h2>
+        <form onSubmit={this.updateFriends}>
           <input
             name="name"
             placeholder="name"
@@ -71,4 +55,4 @@ class AddFriendForm extends Component {
   }
 }
 
-export default AddFriendForm;
+export default UpdateFriendForm;

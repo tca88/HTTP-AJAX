@@ -4,13 +4,15 @@ import axios from "axios";
 import FriendsList from "./components/FriendsList";
 import FriendPage from "./components/FriendPage";
 import AddFriendForm from "./components/AddFriendForm";
+import UpdateFriendForm from "./components/UpdateFriendForm";
 import "./App.css";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      friends: []
+      friends: [],
+      activeFriend: []
     };
   }
 
@@ -26,6 +28,8 @@ class App extends Component {
       });
   }
 
+  // POST Request to add a new friend.
+
   addFriends = newFriend => {
     axios
       .post("http://localhost:5000/friends", newFriend)
@@ -40,6 +44,26 @@ class App extends Component {
       .catch(err => {
         console.log(err);
       });
+  };
+
+  // Put request to update a friend's information.
+
+  updateFriends = updatedFriend => {
+    axios
+      .put(`http://localhost:5000/friends/${updatedFriend.id}`, updatedFriend)
+      .then(res => {
+        this.setState({ friends: res.data });
+        console.log(res);
+        // redirect
+        this.props.history.push(`/friend/${updatedFriend.id}`);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  setActiveFriend = friend => {
+    this.setState({ activeFriend: friend });
   };
 
   render() {
@@ -73,7 +97,11 @@ class App extends Component {
           <Route
             path="/friend/:id"
             render={props => (
-              <FriendPage {...props} friends={this.state.friends} />
+              <FriendPage
+                friends={this.state.friends}
+                setActiveFriend={this.setActiveFriend}
+                {...props}
+              />
             )}
           />
           <Route
@@ -83,6 +111,15 @@ class App extends Component {
                 {...props}
                 friends={this.state.friends}
                 addFriends={this.addFriends}
+              />
+            )}
+          />
+          <Route
+            path="/update-friend"
+            render={props => (
+              <UpdateFriendForm
+                updateFriends={this.updateFriends}
+                activeFriend={this.state.activeFriend}
               />
             )}
           />
